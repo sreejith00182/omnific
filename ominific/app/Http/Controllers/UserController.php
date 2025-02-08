@@ -38,7 +38,7 @@ class UserController extends Controller
             'phone' => $request->phone,
             'password' => bcrypt($request->password),
         ]);
-        dispatch(new SendWelcomeEmail($user));
+        SendWelcomeEmail::dispatch($user->email);
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
